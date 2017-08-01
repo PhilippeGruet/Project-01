@@ -1,0 +1,5 @@
+/vendor/
+/docs/
+app/config.php
+/phpDocumentor.phar
+*.log
