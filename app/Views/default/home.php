@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'SEFTIM » Société d\'Etudes et de Fabrication des Techniques Industrielles Modernes']) ?>
+<?php $this->layout('layout', ['title' => getApp()->getLocale('navbar:home')]) ?>
 
 <?php $this->start('main_content') ?>
 

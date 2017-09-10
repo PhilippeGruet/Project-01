@@ -1,3 +1,30 @@
+#main-content {
+	padding-top: 60px;
+}
+
+header {
+	height:280px;
+}
+footer {
+	height:280px;
+}
+
+.vresize {
+  resize: vertical;
+}
+
+/* Menu */
+#nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+    height: 100px;
+}
+
+.dropdown-menu {
+    min-width: 150px;
+}
 .dropdown-submenu {
     position: relative;
 }
@@ -44,4 +71,12 @@
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
+}
+
+/*End menu*/
+.flag-icon {
+    margin-right: 5px;
+}
+#langSwitch {
+    min-width: initial;
 }

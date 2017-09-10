@@ -14,7 +14,7 @@ class SecurityController extends Controller
 
         if ($this->getUser()) {
             $this->redirectToRoute('default_home');
-            
+
         } else {
             $lastname   = '';
             $firstname   = '';
@@ -67,8 +67,9 @@ class SecurityController extends Controller
                     $user_manager->insert([
                         'lastname'  => $lastname,
                         'firstname' => $firstname,
+                        'username' => "$firstname $lastname",
                         'email'     => $email,
-                        'mdp'       => $auth_manager->hashPassword( $password ),
+                        'pass'       => $auth_manager->hashPassword( $password ),
                         'role'      => 'user',
                         ]);
                         $message = ['success'=>"Vous etes bien inscrit, vous pouvez maintenant vous connecter."];
@@ -83,7 +84,7 @@ class SecurityController extends Controller
                 'lastname'  => $lastname,
                 'firstname' => $firstname,
                 'email'     => $email,
-            ]);            
+            ]);
         }
     }
 
@@ -95,7 +96,7 @@ class SecurityController extends Controller
 
         if ($this->getUser()) {
             $this->redirectToRoute('default_home');
-            
+
         } else {
             $username   = '';
             $message    = [''];

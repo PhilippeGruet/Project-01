@@ -5,7 +5,7 @@ namespace W;
 /**
  * Gère la configuration et exécute le routeur
  */
-class App 
+class App
 {
 	/** @var array Contient le tableau de configuration complet */
 	protected $config;
@@ -13,6 +13,8 @@ class App
 	protected $router;
 	/** @var string Le sous-dossier d'URL dans lequel on accède à l'appli */
 	protected $basePath;
+	/** @var array Contient le tableau d'i18n */
+	private $locale;
 
 	/**
 	 * Constructeur
@@ -24,6 +26,10 @@ class App
 		session_start();
 		$this->setConfig($w_config);
 		$this->routingSetup($w_routes);
+		if ( !isset($_SESSION['locale']) ) {
+			$_SESSION['locale'] = "en";
+		}
+		$this->setLocale($_SESSION['locale']);
 	}
 
 	/**
@@ -126,5 +132,35 @@ class App
 		else {
 			return false;
 		}
+	}
+
+	/**
+	 * Récupère une donnée traduite
+	 * @param   $key Le clef à traduire
+	 * @return mixed La valeur traduite
+	 */
+	public function getLocale($key = null){
+		if (!$key) {
+			return $this->locale;
+		} else {
+			$keys = explode(":", $key);
+		    $a = &$this->locale;
+		    while( count($keys) > 0 ){
+		        $k = array_shift($keys);
+		        if(!is_array($a)){
+		            $a = array();
+		        }
+		        $a = &$a[$k];
+		    }
+			return $a;
+		}
+	}
+	/**
+	 * Initialise la langue
+	 * @param $lang La langue choisi
+	 */
+	public function setLocale($lang) {
+		include '../app/i18n/' . $lang . '.php';
+		$this->locale = $locale;
 	}
 }
